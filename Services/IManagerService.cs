@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace partywebapp.Services
 {
-    public interface IManagerService
+    public interface IManageService
     {
         Dictionary<string, int> CalculatePartiesByGenre();
         Dictionary<string, int> InitGenreDictionary();
