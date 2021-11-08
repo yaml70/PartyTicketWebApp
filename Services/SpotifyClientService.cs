@@ -8,6 +8,7 @@ namespace partywebapp.Services
 {
     public class SpotifyClientService : ISpotifyClientService
     {
+        
         private static readonly string SPOTIFY_CLIENT_ID = "02efcc1c80524bd0b74618b88ae6e3fb";
         private static readonly string SPOTIFY_CLIENT_SECRET = "7803305bcfdb43b2a0a879e63a188a81";
         private readonly SpotifyClient _spotify;
@@ -44,5 +45,6 @@ namespace partywebapp.Services
             var artists = await _spotify.Artists.GetSeveral(new ArtistsRequest(artistsId));
             return artists.Artists;
         }
+        
     }
 }
