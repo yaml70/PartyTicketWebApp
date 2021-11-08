@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using PartWebApp2.Data;
-using PartWebApp2.Models;
+using partywebapp.Data;
+using partywebapp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
