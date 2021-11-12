@@ -1,17 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using partywebapp.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using partywebapp.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-
+using partywebapp.Services;
 namespace partywebapp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly PartiesService _partiesService;
 
         public HomeController(ILogger<HomeController> logger)
         {
