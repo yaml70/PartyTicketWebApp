@@ -16,16 +16,21 @@ namespace partywebapp.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly PartiesService _partiesService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, PartiesService service)
         {
             _logger = logger;
+            _partiesService = service;
         }
 
+        //[Authorize]
         public IActionResult Index()
         {
-            return View();
+
+            HomePage homePage = new HomePage();
+            return View(_partiesService.getDataForHomePage(homePage));
         }
 
+        [Authorize(Roles = "Admin")] //only admin can see this 
         public IActionResult Privacy()
         {
             return View();
