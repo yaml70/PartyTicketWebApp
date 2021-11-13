@@ -1,5 +1,75 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model partywebapp.Models.User
+
 @{
+    ViewData["Title"] = "producerRegister";
+    Layout = "_loginlayout";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/LoginReg.css" />
+</head>
+<body>
+    <div class="testbox">
+        <form class="regform" asp-action="ProducerRegister">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="title">
+                    <h1>Producer Sign-Up</h1>
+                </div>
+                <div class="form-row">
+                    <div class="item col-md-5 mb-4">
+                        <input asp-for="firstName" placeholder="" />
+                        <label>First Name</label>
+                        <span asp-validation-for="firstName" class="text-danger"></span>
+                        <i class="fas"></i>
+                    </div>
+                    <div class="item col-md-2 mb-4"></div>
+                    <div class="item col-md-5 mb-4">
+                        <input asp-for="lastName" placeholder="" />
+                        <label>Last Name</label>
+                        <span asp-validation-for="lastName" class="text-danger"></span>
+                        <i class="fas"></i>
+                    </div>
+                </div>
+                <div class="item col-md-12 mb-4">
+                    <input asp-for="email" />
+                    <label>Email Address</label>
+                    <span asp-validation-for="email" class="text-danger"></span>
+                    <i class="fas"></i>
+                </div>
+                <div class="form-row">
+                    <div class="item col-md-5">
+                        <input asp-for="birthDate" placeholder="" />
+                        <label>Birth Date</label>
+                        <span asp-validation-for="birthDate" class="text-danger"></span>
+                        <i class="fas"></i>
+                    </div>
+                    <div class="item col-md-2"></div>
+                    <div class="item col-md-5">
+                        <input asp-for="password" />
+                        <label>Password</label>
+                        <span asp-validation-for="password" class="text-danger"></span>
+                        <i class="fas"></i>
+                    </div>
+                </div>
+                <div class="btn-input-reg">
+                    <input class="" type="submit" value="Sign-Up" placeholder="Producer Register" />
+                    <i class="fas"></i>
+                </div>
+                <div class="item" style="text-align: center;">
+                    <a asp-action="Login">Register? Click here for Login</a>
+                    <i class="fas"></i>
+                </div>
+            </div>
+        </form>
+    </div>
+    @if (ViewBag.Error != null)
+    {
+        <div class="text-danger">@ViewBag.Error</div>
+    }
+</body>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

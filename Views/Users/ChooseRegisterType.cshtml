@@ -1,5 +1,37 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model partywebapp.Models.User
+
 @{
+    ViewData["Title"] = "chooseRegisterType";
+    Layout = "_LoginLayout";
 }
+
+<head>
+    <link rel="stylesheet" href="~/css/LoginReg.css" />
+</head>
+
+<div class="login-box">
+    <h2>Please Choose</h2>
+    <form>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div>
+            <a asp-action="Register"
+               style="text-decoration:none;" class="button button--moema-first button--text-thick button--text-upper button--size-s">Client Register</a>
+        </div>
+        <div>
+            <a asp-action="ProducerRegister" style="text-decoration: none;"
+               class="button button--moema-sec button--text-thick button--text-upper button--size-s">Producer Register</a>
+        </div>
+        <div>
+            <a asp-action="Login" style="text-decoration: none;"
+               class="button button--moema-last button--text-thick button--text-upper button--size-s">Back</a>
+        </div>
+        @if (ViewBag.Error != null)
+        {
+        <div class="text-danger">@ViewBag.Error</div>
+        }
+    </form>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

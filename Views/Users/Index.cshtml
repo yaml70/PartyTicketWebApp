@@ -1,5 +1,133 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model IEnumerable<partywebapp.Models.User>
 @{
+    ViewData["Title"] = "Index";
+    Layout = "_HomeLayout";
 }
+<head>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: grid;
+            padding: 100px;
+            color: #4f546c;
+            font-size: 0.9rem;
+            background-color: #000000;
+        }
+
+        table {
+            border-collapse: collapse;
+            box-shadow: 10px 10px 10px #e1e5ee;
+            background-color: white;
+            text-align: center;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        thead {
+            box-shadow: 0 5px 10px #e1e5ee;
+        }
+
+        th {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            font-size: 16px;
+            font-weight: 900;
+        }
+
+        td {
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: #2962ff;
+        }
+
+        .status {
+            border-radius: 0.2rem;
+            background-color: red;
+            padding: 0.2rem 1rem;
+            text-align: center;
+        }
+
+        .status-producer {
+            background-color: #76f3eb;
+            color: black;
+        }
+
+        .status-client {
+            background-color: #c8e6c9;
+            color: black;
+        }
+
+        .status-admin {
+            background-color: #5cb1f6;
+            color: black;
+        }
+
+        .amount {
+            text-align: right;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f4f6fb;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Full Name</th>
+                <th>Email Address</th>
+                <th>Birth-Date</th>
+                <th>User Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.firstName @item.lastName</td>
+                <td>@item.email</td>
+                <td>@item.birthDate.ToString("d")</td>
+                <td>
+                    @if (item.Type == UserType.Admin)
+                    {
+                        <p class="status status-admin">Admin</p>
+                    }
+                    else if (item.Type == UserType.Client)
+                    {
+                        <p class="status status-client">Client</p>
+                    }
+                    else
+                    {
+                        <p class="status status-producer">Producer</p>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    @if (item.Type != UserType.Admin && item.Id != ViewBag.userId)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">| Edit |</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+                </td>
+
+            </tr>
+        }
+    </table>
+</body>
