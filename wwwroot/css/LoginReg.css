@@ -1,0 +1,598 @@
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+@import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+
+/*body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;*/
+/*background-image: url("https://images.pexels.com/photos/1587927/pexels-photo-1587927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-size: cover;*/
+/*background-color: black;
+}*/
+
+/**/
+.title {
+    color: wheat;
+    position: relative;
+    height: 130px;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+    .title::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+
+.testbox {
+    margin-top: 30px;
+    margin: 0px -120px;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: rgba(0,0,0,.5);
+    border: medium;
+    display: flex;
+    width: 700px;
+}
+
+.form-row {
+    padding-inline: 12px 12px;
+}
+
+.regform {
+    width: 100%;
+    padding: 20px;
+    border-radius: 30px;
+    background: rgba(0,0,0,.5);
+    box-shadow: 0 0 1000px 0 #007897;
+}
+
+body {
+    margin: 0px 400px;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(#141e30, #243b55);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-input-reg input {
+    margin: 20px 210px;
+    text-align: center;
+    display: flex;
+    padding: 10px 50px;
+    border: 3px solid #03e9f4;
+    color: #03e9f4;
+    background-color: rgba(0,0,0,.5);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    letter-spacing: 3px;
+}
+
+.btn-input input {
+    margin: 0px 25px;
+    text-align: center;
+    display: flex;
+    padding: 10px 100px;
+    border: 3px solid #03e9f4;
+    color: #03e9f4;
+    background-color: rgba(0,0,0,.5);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    letter-spacing: 3px;
+}
+
+
+.btn-register{
+    margin: 0px 25px;
+    text-align: center;
+    display: flex;
+    padding: 10px 80px;
+    border: 3px solid #03e9f4;
+    color: #03e9f4;
+    background-color: rgba(0,0,0,.5);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    letter-spacing: 3px;
+}
+
+
+.login-box .btn-register:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 100px #03e9f4;
+}
+.item input {
+    width: 100%;
+    padding: 5px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.item label {
+    position: absolute;
+    top: -30px;
+    left: 15px;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.item input :hover {
+    -webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+    transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+    color: #ECEFF1;
+    background-color: #00b9c1;
+    -webkit-animation: anim-moema-1 0.3s forwards;
+    animation: anim-moema-1 0.3s forwards;
+    overflow: hidden;
+}
+
+.item input:focus ~ label,
+.item input:active ~ label {
+    top: -35px;
+    left: 10px;
+    color: #03e9f4;
+    font-size: 12px;
+}
+
+.btn-input-reg input:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 100px #03e9f4;
+}
+
+.login-box .btn-input input:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 100px #03e9f4;
+}
+
+.register-box {
+    width: 600px;
+}
+
+.login-box {
+    width: 400px;
+    height: 480px;
+    padding: 40px;
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+
+    .login-box h2 {
+        margin: 0 0 30px;
+        padding: 0;
+        color: #fff;
+        text-align: center;
+    }
+
+    .login-box .user-box {
+        position: relative;
+        margin-top: 20px;
+    }
+
+        .login-box .user-box input {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 30px;
+            border: none;
+            border-bottom: 1px solid #fff;
+            outline: none;
+            background: transparent;
+        }
+
+        .login-box .user-box label {
+            position: absolute;
+            top: -20px;
+            left: -3px;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            pointer-events: none;
+            transition: .5s;
+        }
+
+        .login-box .user-box input:focus ~ label,
+        .login-box .user-box input:active ~ label {
+            top: -20px;
+            left: 0;
+            color: #03e9f4;
+            font-size: 12px;
+        }
+
+        .login-box .user-box input:indeterminate ~ label {
+            top: -20px;
+            left: 0;
+            color: #03e9f4;
+            font-size: 12px;
+        }
+
+a {
+    text-decoration: none;
+}
+
+.buttonreg {
+    min-width: 200px;
+    min-height: 50px;
+    margin: 0.5em;
+    color: inherit;
+    position: relative;
+    text-align: center;
+    font-size: 22px;
+}
+
+
+
+.button {
+    margin: 20px 0px;
+    text-align: center;
+    display: flex;
+    font-size: 20px;
+    border: none;
+    letter-spacing: 3px;
+    background: none;
+    color: inherit;
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+    -webkit-backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.button--moema-first {
+    width: 100%;
+    height: 70px;
+    display: inline-block;
+    padding: 18px;
+    border-radius: 50px;
+    background: #3498db;
+    color: #fff;
+    -webkit-transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button--moema-sec {
+    width: 100%;
+    height: 70px;
+    display: inline-block;
+    padding: 18px;
+    border-radius: 50px;
+    background: #3498db;
+    color: #fff;
+    -webkit-transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button--moema-last {
+    width: 100%;
+    height: 70px;
+    display: inline-block;
+    padding: 18px;
+    border-radius: 50px;
+    background: #3498db;
+    color: #fff;
+    -webkit-transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button--moema-first.button--moema-sec.button--moema-last.button--inverted {
+    background: #ECEFF1;
+    color: #37474f;
+}
+
+.button--moema-first:before {
+    content: '';
+    top: -20px;
+    left: -20px;
+    bottom: -20px;
+    right: -20px;
+    background: inherit;
+    border-radius: 50px;
+    z-index: -1;
+    opacity: 0.4;
+    -webkit-transform: scale3d(0.8, 0.5, 1);
+    transform: scale3d(0.8, 0.5, 1);
+}
+.button--moema-sec:before {
+    content: '';
+    top: -20px;
+    left: -20px;
+    bottom: -20px;
+    right: -20px;
+    background: inherit;
+    border-radius: 50px;
+    z-index: -1;
+    opacity: 0.4;
+    -webkit-transform: scale3d(0.8, 0.5, 1);
+    transform: scale3d(0.8, 0.5, 1);
+}
+
+.button--moema-last:before {
+    content: '';
+    top: -20px;
+    left: -20px;
+    bottom: -20px;
+    right: -20px;
+    background: inherit;
+    border-radius: 50px;
+    z-index: -1;
+    opacity: 0.4;
+    -webkit-transform: scale3d(0.8, 0.5, 1);
+    transform: scale3d(0.8, 0.5, 1);
+}
+
+.button--moema-first:hover {
+    -webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+    transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+    color: #ECEFF1;
+    background-color: #00b9c1;
+    -webkit-animation: anim-moema-1 0.3s forwards;
+    animation: anim-moema-1 0.3s forwards;
+    overflow: hidden;
+}
+
+.button--moema-sec:hover {
+    -webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+    transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+    color: #ECEFF1;
+    background-color: #ff7a7a;
+    -webkit-animation: anim-moema-1 0.3s forwards;
+    animation: anim-moema-1 0.3s forwards;
+    overflow: hidden;
+}
+
+.button--moema-last:hover {
+    -webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+    transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+    color: #ECEFF1;
+    background-color: #e27ef5;
+    -webkit-animation: anim-moema-1 0.3s forwards;
+    animation: anim-moema-1 0.3s forwards;
+    overflow: hidden;
+}
+
+
+.button--moema.button--inverted:hover {
+    color: #ECEFF1;
+    background-color: #3498db;
+}
+
+.button--moema:hover::before {
+    -webkit-animation: anim-moema-2 0.3s 0.3s forwards;
+    animation: anim-moema-2 0.3s 0.3s forwards;
+}
+
+@-webkit-keyframes anim-moema-1 {
+    60% {
+        -webkit-transform: scale3d(0.8, 0.8, 1);
+        transform: scale3d(0.8, 0.8, 1);
+    }
+
+    85% {
+        -webkit-transform: scale3d(1.1, 1.1, 1);
+        transform: scale3d(1.1, 1.1, 1);
+    }
+
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes anim-moema-1 {
+    60% {
+        -webkit-transform: scale3d(0.8, 0.8, 1);
+        transform: scale3d(0.8, 0.8, 1);
+    }
+
+    85% {
+        -webkit-transform: scale3d(1.1, 1.1, 1);
+        transform: scale3d(1.1, 1.1, 1);
+    }
+
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@-webkit-keyframes anim-moema-2 {
+    to {
+        opacity: 0;
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes anim-moema-2 {
+    to {
+        opacity: 0;
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+/**/
+.whiteText {
+    color: white;
+}
+
+.card {
+    margin-bottom: 20px;
+    border: medium;
+}
+
+.box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 900px;
+    background: #f2f2f2;
+    z-index: -1;
+}
+
+.margeReg {
+    margin-top: 80px
+}
+
+.box input[type="text" ],
+.box input[type="date"],
+.box input[type="email"],
+.box input[type="password"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 10px 10px;
+    width: 250px;
+    outline: none;
+    color: white;
+    border-radius: 20px;
+    transition: 0.25s
+}
+
+.box h1 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500
+}
+
+.box input[type="email"]:focus,
+.box input[type="password"]:focus {
+    width: 300px;
+    border-color: #2ecc71
+}
+
+.box input[type="submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer
+}
+
+    .box input[type="submit"]:hover {
+        background: #2ecc71
+    }
+
+.forgot {
+    color: dodgerblue;
+    text-decoration: underline
+}
+
+ul.social-network {
+    list-style: none;
+    display: inline;
+    margin-left: 0 !important;
+    padding: 0
+}
+
+    ul.social-network li {
+        display: inline;
+        margin: 0 5px
+    }
+
+.social-network a.icoFacebook:hover {
+    background-color: #3B5998
+}
+
+.social-network a.icoTwitter:hover {
+    background-color: #33ccff
+}
+
+.social-network a.icoGoogle:hover {
+    background-color: #BD3518
+}
+
+    .social-network a.icoFacebook:hover i,
+    .social-network a.icoTwitter:hover i,
+    .social-network a.icoGoogle:hover i {
+        color: #fff
+    }
+
+a.socialIcon:hover,
+.socialHoverClass {
+    color: #44BCDD
+}
+
+.social-circle li a {
+    display: inline-block;
+    position: relative;
+    margin: 0 auto 0 auto;
+    border-radius: 50%;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    font-size: 20px
+}
+
+.social-circle li i {
+    margin: 0;
+    line-height: 50px;
+    text-align: center
+}
+
+.social-circle li a:hover i,
+.triggeredHover {
+    transform: rotate(360deg);
+    transition: all 0.2s
+}
+
+.social-circle i {
+    color: #fff;
+    transition: all 0.8s;
+    transition: all 0.8s
+}
