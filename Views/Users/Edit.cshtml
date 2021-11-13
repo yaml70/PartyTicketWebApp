@@ -1,5 +1,83 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model partywebapp.Models.User
+
 @{
+    ViewData["Title"] = "Edit";
+}
+<head>
+</head>
+<head>
+    <link rel="stylesheet" href="~/css/LoginReg.css" />
+</head>
+<body>
+    <div class="testbox">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="title">
+                    <h1>Edit Profile</h1>
+                </div>
+                <div class="form-row">
+                    <div class="item col-md-5 mb-4">
+                        <input asp-for="firstName" placeholder="" />
+                        <label>First Name</label>
+                        <span asp-validation-for="firstName" class="text-danger"></span>
+                        <i class="fas"></i>
+                    </div>
+                    <div class="item col-md-2 mb-4"></div>
+                    <div class="item col-md-5 mb-4">
+                        <input asp-for="lastName" placeholder="" />
+                        <label>Last Name</label>
+                        <span asp-validation-for="lastName" class="text-danger"></span>
+                        <i class="fas"></i>
+                    </div>
+                </div>
+                <div class="item col-md-12 mb-4">
+                    <input asp-for="email" />
+                    <label>Email Address</label>
+                    <span asp-validation-for="email" class="text-danger"></span>
+                    <i class="fas"></i>
+                </div>
+                <div class="form-row">
+                    <div class="item col-md-5">
+                        <input asp-for="birthDate" placeholder="" />
+                        <label>Birth Date</label>
+                        <span asp-validation-for="birthDate" class="text-danger"></span>
+                        <i class="fas"></i>
+                    </div>
+                    <div class="item col-md-2"></div>
+                    <div class="item col-md-5">
+                        <input asp-for="password" type="password" />
+                        <label>Password</label>
+                        <span asp-validation-for="password" class="text-danger"></span>
+                        <i class="fas"></i>
+                    </div>
+                </div>
+                @if (ViewBag.UserType == "Manager")
+                {
+                    <select asp-for="Type" asp-items="ViewBag.TypesUser"></select>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                }
+                <div class="btn-input-reg">
+                    <input type="submit" value="Apply" />
+                </div>
+                <div class="container">
+                    <div class="btn btn-danger col-3" style="margin: 0px 0px 0px 210px;">
+                        <a style="color: white; text-decoration: none;" asp-action="Index">Cancel Changes</a>
+                        <i class="fas"></i>
+                    </div>
+                </div>
+            </div>
+        </form>
+        @*<form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <div class="aboutitem" style="width: 90%;">
+                <div class="form-group col-md-12">
+                    <input type="submit" value="Delete" class="btn btn-danger btn-lg btn-block" />
+                </div>
+            </div>
+        </form>*@
+    </div>
+</body>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
