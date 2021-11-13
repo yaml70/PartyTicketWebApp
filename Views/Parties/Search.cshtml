@@ -1,5 +1,29 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+@model IEnumerable<partywebapp.Models.Party>
+
+@foreach (var item in Model)
+{
+    <div class="container-fluid col-sm-4">
+        <div class="a-box">
+            <div class="img-container">
+                <div class="img-inner">
+                    <div class="inner-skew">
+                        <img src="@Html.DisplayFor( modelItem => item.partyImage.imageUrl)">
+                    </div>
+                </div>
+            </div>
+            <div class="text-container">
+                <h3>
+                    @Html.DisplayFor(modelItem => item.name)
+                </h3>
+                <h5>
+                    @Html.DisplayFor(modelItem => item.eventDate.Day)/@Html.DisplayFor(modelItem => item.eventDate.Month)/@Html.DisplayFor(modelItem => item.eventDate.Year)
+                </h5>
+                <h5>
+                    @Html.DisplayFor(modelItem => item.genre.Type)
+                </h5>
+                <a asp-action="Details" asp-route-id="@item.Id">View More</a>
+            </div>
+        </div>
+    </div>
 }
+
