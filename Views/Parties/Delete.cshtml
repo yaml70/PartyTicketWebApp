@@ -1,5 +1,120 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model partywebapp.Models.Party
+
 @{
+    ViewData["Title"] = "Delete";
+    Layout = "_HomeLayout";
 }
+
+<head>
+    <link rel="stylesheet" href="~/css/HomePage.css" />
+    <style>
+
+        h1 {
+            font-size: 7rem;
+            text-align: center;
+            height: 24vh;
+            line-height: 20vh;
+            color: #fcedd8;
+            font-family: 'Niconne', cursive;
+            font-weight: 700;
+            text-shadow: 5px 5px 0px #eb452b, 10px 10px 0px #efa032, 15px 15px 0px #46b59b, 20px 20px 0px #017e7f;
+        }
+
+        .image {
+            width: 50%;
+            float: left;
+            margin-top: 20px;
+            height: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+        }
+
+        .about {
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        .aboutitem {
+            width: 50%;
+            float: right;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            padding-top: 70px;
+        }
+
+        .buytickets {
+            width: 90%;
+            float: right;
+            font-size: 25px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            border: #3fc4da 3px solid;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 10px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #000000
+        }
+
+        th {
+            background-color: #3fc4da;
+            color: white;
+        }
+    </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <div id="portfolio" class="jumbotron text-center" data-target=".navbar">
+        <h1 class="titledit">@Model.name</h1>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Open Doors</th>
+                <th>Genre</th>
+                <th>Area</th>
+                <th>Club</th>
+                <th>Minimal Age</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td>@Html.DisplayFor(model => model.eventDate)</td>
+                <td>@Html.DisplayFor(model => model.startTime)</td>
+                <td>@Html.DisplayFor(model => model.genre.Type)</td>
+                <td>@Html.DisplayFor(model => model.area.Type)</td>
+                <td>@Html.DisplayFor(model => model.club.Name)</td>
+                <td>+@Html.DisplayFor(model => model.minimalAge)</td>
+                <td>@Html.DisplayFor(model => model.price) ILS</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="portfolio" class="container-fluid text-center">
+        <div class="image">
+            <img src="@Html.DisplayFor(model => model.partyImage.imageUrl)">
+        </div>
+        <div class="aboutitem">
+            <div class="aboutitem" style="width: 90%;">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="aboutitem" style="width: 90%;">
+                        <div class="form-group col-md-12">
+                            <input type="submit" value="Delete" class="btn btn-danger btn-lg btn-block" />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary btn-lg btn-block">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</body>
