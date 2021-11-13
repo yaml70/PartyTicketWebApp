@@ -1,5 +1,85 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model IEnumerable<partywebapp.Models.Party>
+
 @{
+    ViewData["Title"] = "MyParties";
+    Layout = "_HomeLayout";
 }
+
+<head>
+    <link rel="stylesheet" href="~/css/HomePage.css" />
+    <style>
+        .btn {
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <div id="portfolio" class="jumbotron text-center" data-target=".navbar">
+        <h1>My Parties</h1>
+        @if (ViewBag.UserType != "Client")
+        {
+            <div class="mr-auto col-12 " style="display: flex;">
+                <div class="col-4"></div>
+                <a asp-action="Create" style="text-decoration: none;"
+                   class="button button--moema button--text-thick button--text-upper button--size-s">Add New Party</a>
+                <div class="col-4"></div>
+            </div>
+        }
+    </div>
+    <div id="portfolio" class="container-fluid text-center">
+        @{ var col = "color1"; var i = 0;}
+        @foreach (var item in Model)
+        {
+            <div class="container-fluid col-sm-4">
+                <div class="a-box">
+                    <div class="img-container">
+                        <div class="img-inner">
+                            <div class="inner-skew">
+                                <img src="@Html.DisplayFor( modelItem => item.partyImage.imageUrl)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-container @col">
+                        <h3>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </h3>
+                        <h5>
+                            @Html.DisplayFor(modelItem => item.eventDate.Day)/@Html.DisplayFor(modelItem => item.eventDate.Month)/@Html.DisplayFor(modelItem => item.eventDate.Year)
+                        </h5>
+                        <h5>
+                            @Html.DisplayFor(modelItem => item.genre.Type)
+                        </h5>
+                        <a asp-action="Details" asp-route-id="@item.Id">View More</a>
+                        @if (ViewBag.UserType != "Client")
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id">| Edit |</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete |</a>
+                        }
+                    </div>
+                </div>
+            </div>
+            i++;
+            if (i < 3)
+            {
+                col = "color1";
+            }
+            else if (i > 2 && i < 6)
+            {
+                col = "color2";
+            }
+            else if (i > 5 && i < 9)
+            {
+                col = "color3";
+            }
+            else if (i > 8 && i < 12)
+            {
+                col = "color4";
+            }
+            else
+            {
+                i = -1;
+            }
+        }
+    </div>
+</body>
