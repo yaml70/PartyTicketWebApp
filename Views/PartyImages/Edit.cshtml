@@ -1,5 +1,93 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model partywebapp.Models.PartyImage
+
 @{
+    ViewData["Title"] = "Edit";
+    Layout = "_OtherPages";
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/css/HomePage.css" />
+    <style>
+
+        .jumbotron {
+            height: 50px;
+        }
+
+        h1 {
+            font-size: 7rem;
+            text-align: center;
+            height: 24vh;
+            line-height: 20vh;
+            color: #fcedd8;
+            font-family: 'Niconne', cursive;
+            font-weight: 700;
+            text-shadow: 5px 5px 0px #eb452b, 10px 10px 0px #efa032, 15px 15px 0px #46b59b, 20px 20px 0px #017e7f;
+        }
+
+        .image {
+            width: 50%;
+            float: left;
+            margin-top: 10px;
+            height: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+        }
+
+        .about {
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        .aboutitem {
+            width: 50%;
+            float: right;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            padding-top: 70px;
+        }
+    </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <div id="portfolio" class="jumbotron text-center" data-target=".navbar">
+        <h1 class="titledit">@Model.Party.name Image</h1>
+    </div>
+    <div id="portfolio" class="container-fluid text-center">
+        <div class="image">
+            <img src="@Html.DisplayFor(model => model.imageUrl)">
+        </div>
+        <div class="aboutitem">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="aboutitem" style="width: 90%;">
+                    <div class="form-group">
+                        <input asp-for="imageUrl" class="form-control" />
+                        <span asp-validation-for="imageUrl" class="text-danger"></span>
+                    </div>
+                </div>
+                <input type="hidden" asp-for="PartyId" />
+                <div class="aboutitem" style="width: 90%;">
+                    <div class="form-group col-md-12">
+                        <div class="col-md-6">
+                            <a asp-controller="Parties" asp-action="Details" asp-route-id="@Model.PartyId" class="btn btn-danger btn-lg btn-block">Cancel</a>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="submit" value="Save" class="btn btn-success btn-lg btn-block" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+            @if (ViewBag.Error != null)
+            {
+                <div class="text-danger">@ViewBag.Error</div>
+            }
+        </div>
+    </div>
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
