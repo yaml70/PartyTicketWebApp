@@ -1,5 +1,136 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model List<partywebapp.Models.Party>
+
 @{
+    ViewData["Title"] = "homePage";
+    Layout = "_HomeLayout";
 }
+
+<head>
+    <link rel="stylesheet" href="~/css/HomePage.css" />
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+    <div id="portfolio" class="jumbotron text-center" data-target=".navbar">
+        <h1>
+            @if (ViewBag.PageName != "My Parties") { ViewBag.PageName = "All Parties"; }
+            @ViewBag.PageName
+        </h1>
+        <h3>Time To Celabrate</h3>
+        <form asp-action="findParty">
+            <div class="input-group">
+                <input name="partyName" class="form-control text-center" placeholder="Enter name of the party..." />
+                <span class="text-danger"></span>
+                <div class="input-group-btn">
+                    <button type="submit" value="findParty" class="btn btn-danger">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-12">
+        <form asp-action="SearchByGenreClubArea">
+            <div class="col-md-3">
+                <option>Genre</option>
+                <select name="genreId" class="form-control text-center" asp-items="ViewBag.genreId"></select>
+            </div>
+            <div class="col-md-3">
+                <option>Area</option>
+                <select name="areaId" class="form-control text-center" asp-items="ViewBag.areaId"></select>
+            </div>
+            <div class="col-md-3">
+                <option>Club</option>
+                <select name="clubId" class="form-control text-center" asp-items="ViewBag.clubId"></select>
+            </div>
+            <br />
+            <div>
+                <button type="submit" value="findParty" class="btn btn-danger">Search</button>
+            </div>
+
+        </form>
+    </div>
+    <br />
+    <br />
+    <br />
+    
+        <div class="col-md-12">
+            <form asp-action="SearchByPriceDate">
+                <div class="col-md-3">
+                    <input name="dateInput" class="form-control" type="date" />
+                </div>
+                <div class="col-md-3">
+                    <input name="price" class="form-control" placeholder="Enter price" type="number" />
+                </div>
+                <div class="col-md-2">
+                    <span class="text-danger"></span>
+                    <div class="input-group-btn">
+                        <button type="submit" value="findParty" class="btn btn-danger">Search</button>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    
+
+    <div id="portfolio" class="container-fluid text-center">
+        @{ var col = "color1"; var i = 0;}
+
+        @{
+            var count = 0;
+            @foreach (var item in Model)
+            {
+                count++;
+                <div class="container-fluid col-sm-4">
+                    <div class="a-box">
+                        <div class="img-container">
+                            <div class="img-inner">
+                                <div class="inner-skew">
+                                    <img src="@Html.DisplayFor(modelItem => item.partyImage.imageUrl)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-container @col">
+                            <h3>
+                                @Html.DisplayFor(modelItem => item.name)
+                            </h3>
+                            <h5>
+                                @Html.DisplayFor(modelItem => item.eventDate.Day)/@Html.DisplayFor(modelItem => item.eventDate.Month)/@Html.DisplayFor(modelItem => item.eventDate.Year)
+                            </h5>
+                            <h5>
+                                @Html.DisplayFor(modelItem => item.genre.Type)
+                            </h5>
+                            <a asp-action="Details" asp-route-id="@item.Id">View More</a>
+                        </div>
+                    </div>
+                </div>
+                i++;
+                if (i < 3)
+                {
+                    col = "color1";
+                }
+                else if (i > 2 && i < 6)
+                {
+                    col = "color2";
+                }
+                else if (i > 5 && i < 9)
+                {
+                    col = "color3";
+                }
+                else if (i > 8 && i < 12)
+                {
+                    col = "color4";
+                }
+                else
+                {
+                    i = -1;
+                }
+            }
+
+            @if (count == 0)
+            {
+                <br />
+                <br />
+                <br />
+                <h1>No Parties for this search!</h1>
+            }
+        }
+    </div>
+</body>
