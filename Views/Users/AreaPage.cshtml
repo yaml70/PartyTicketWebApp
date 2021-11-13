@@ -1,5 +1,44 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model Tuple<List<Party>, List<PartyImage>>
 @{
+    ViewData["Title"] = "AreaPage";
+    Layout = "_HomeLayout";
 }
+
+@{ int i = 0; }
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <div id="portfolio" class="container-fluid text-center" style="margin-top: 60px;">
+        @if (Model.Item1.Count() != 0)
+        {
+            @foreach (var party in Model.Item1)
+            {
+                <div class="container-fluid col-sm-4">
+                    <div class="a-box">
+                        <div class="img-container">
+                            <div class="img-inner">
+                                <div class="inner-skew">
+                                    <img src="@Model.Item2[i].imageUrl" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-container color2">
+                            <h3>
+                                @Model.Item1[i].name
+                            </h3>
+                            <h5>
+                                @Model.Item1[i].eventDate.ToShortDateString()
+                            </h5>
+                            <h5>
+                                + @Model.Item1[i].minimalAge
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                i++;
+            }
+        }
+        else
+        {
+            <img src="https://image.shutterstock.com/image-vector/not-available-watermark-stamp-text-260nw-522778633.jpg" />
+        }
+    </div>
+</body>
