@@ -1,5 +1,118 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model partywebapp.Models.Party
+
 @{
+    ViewData["Title"] = "Create";
+    Layout = "_CreatePagesLayout";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/CreatePages.css" />
+    <script src="~/js/CreateParty.js"></script>
+    <style>
+        .block-div {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="testbox">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="banner">
+                <h1>New Party</h1>
+            </div>
+            <div class="item col-md-12">
+                <p>Event's Name</p>
+                <input asp-for="name" />
+                <span asp-validation-for="name" class="text-danger"></span>
+                <i class="fas"></i>
+            </div>
+            <div class="form-group block-div">
+                <div class="item col-md-6">
+                    Date Of Event
+                    <input asp-for="eventDate" />
+                    <span asp-validation-for="eventDate" class="text-danger"></span>
+                    <i class="fas"></i>
+                </div>
+                <div class="item col-md-6">
+                    Time Of Event
+                    <input asp-for="startTime" />
+                    <span asp-validation-for="startTime" class="text-danger"></span>
+                    <i class="fas"></i>
+                </div>
+            </div>
+            <div class="form-group block-div">
+                <div class="item col-md-4">
+                    Club
+                    <select asp-for="clubId" asp-items="ViewBag.Clubs"></select>
+                    <i class="fas"></i>
+                </div>
+                <div class="item col-md-4">
+                    Area
+                    <select asp-for="areaId" asp-items="ViewBag.Areas"></select>
+                    <i class="fas"></i>
+                </div>
+                <div class="item col-md-4">
+                    Genre
+                    <select asp-for="genreId" asp-items="ViewBag.Genres"></select>
+                    <i class="fas"></i>
+                </div>
+            </div>
+            <div class="form-group block-div">
+                <div class="item col-md-4">
+                    Minimal Age
+                    <input asp-for="minimalAge" />
+                    <span asp-validation-for="minimalAge" class="text-danger"></span>
+                    <i class="fas"></i>
+                </div>
+                <div class="item col-md-4">
+                    Price
+                    <input asp-for="price" type="number" />
+                    <span asp-validation-for="price" class="text-danger"></span>
+                    <i class="fas"></i>
+                </div>
+                <div class="item col-md-4">
+                    Max Capacity
+                    <input asp-for="maxCapacity" />
+                    <span asp-validation-for="maxCapacity" class="text-danger"></span>
+                    <i class="fas"></i>
+                </div>
+            </div>
+            <div class="item col-md-12 block-div">
+                Party Image Url
+                <input name="imageUrl" placeholder="URL" type="url" />
+                <i class="fas"></i>
+            </div>
+            <div class="item col-md-12 block-div">
+                Performers Spotify Id
+                <div id="performersFieldContainer">
+                    <input id="performer-name-0" onchange="getPerformerIdByName(this)" />
+                </div>
+                <button type="button" onclick="addField()">Add More Performers!</button>
+                <i class="fas"></i>
+            </div>
+
+            <div class="item col-md-12">
+                Write something to facebook!
+                <div>
+                    <input id="facebookMessageInput" name="facebookMessage" />
+                </div>
+                <i class="fas"></i>
+            </div>
+
+            <div class="item col-md-12">
+                <p></p>
+                <p></p>
+                <p></p>
+                <button class="col-md-3">
+                    <a asp-action="Index">Previous</a>
+                </button>
+                <p class="col-md-6"></p>
+                <button onclick="postToFacebook()" type="submit" value="Create" class="col-md-3">Create Party</button>
+            </div>
+        </form>
+    </div>
+</body>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

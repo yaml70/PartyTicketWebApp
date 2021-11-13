@@ -1,5 +1,112 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model partywebapp.Models.Party
+
 @{
+    ViewData["Title"] = "Details";
+    Layout = "_HomeLayout";
 }
+
+<head>
+    <link rel="stylesheet" href="~/css/HomePage.css" />
+    <style>
+        h2 {
+            text-align: center;
+            color: #ffffff;
+        }
+        h3 {
+            text-align: center;
+            color: #ffffff;
+        }
+        h4 {
+            text-align: center;
+            color: #ffffff;
+        }
+        .thumbnail {
+            background-color: transparent;
+        }
+        .image-background {
+            margin-top: 30px;
+            background-image: url(@Html.DisplayFor(model => model.partyImage.imageUrl));
+        }
+    </style>
+</head>
+<div class="jumbotron text-center">
+    <h1>@Html.DisplayFor(model => model.name)</h1>
+    <h3>@Html.DisplayFor(model => model.eventDate)</h3>
+    <h3>@Model.price ILS</h3>
+    <a class="btn btn-success btn-lg buytickets" asp-action="Payment" asp-route-id="@Model.Id">Buy Tickets!</a>
+</div>
+<div class="jumbotron text-center image-background"></div>
+<div id="portfolio" class="container-fluid text-center">
+    @if (ViewBag.artists != null)
+    {
+        <h2>Lineup</h2><br>
+        <h4>The best of the @Html.DisplayFor(model => model.genre.Type) genre</h4>
+    }
+    <div class="row text-center slideanim">
+        @for (var i = 0; i < ViewBag.artists?.Length; i++)
+        {
+            var artist = ViewBag.artists[i];
+            var artistPlayer = "https://open.spotify.com/embed/artist/" + artist.Id + "?theme=0";
+            <div class="col-sm-5 col-md-3">
+                <div class="thumbnail">
+                    <img src=@artist.Images[0].Url alt=@artist.Name width="400" height="300" style="margin-bottom:-25px" />
+                    <div class="caption">
+                        <iframe src=@artistPlayer
+                                width="317"
+                                height="80"
+                                frameBorder="0"
+                                allowtransparency="true"
+                                allow="encrypted-media">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        }
+    </div><br>
+</div>
+@{
+    var googleApiKey = "AIzaSyAfpKKSNaLzexuYOjKed1qvBlCTcEgHwco";
+    var googleMapSrc = "https://www.google.com/maps/embed/v1/place?key=" + googleApiKey + "&q=place_id:" + Model.club.LocationId;
+    <div id="services" class="container-fluid text-center">
+        <h2>LOCATION</h2>
+        <br>
+        <div class="row slideanim">
+            <div class="col-sm-3">
+                <h4>Availeble Tickets</h4>
+                <span class="glyphicon glyphicon-user logo-small"></span>
+                @if (Model.maxCapacity > Model.ticketsPurchased)
+                {
+                    <h2>@Html.DisplayFor(model => model.ticketsPurchased) / @Html.DisplayFor(model => model.maxCapacity)</h2> }
+                else
+                {
+                    <h2>SOLD OUT</h2>}
+            </div>
+            <div class="col-sm-6">
+                <iframe width="450"
+                        height="300"
+                        style="border:0"
+                        loading="lazy"
+                        allowfullscreen
+                        src=@googleMapSrc>
+                </iframe>
+            </div>
+            <div class="col-sm-3">
+                <h4>DOORS OPEN AT</h4>
+                <span class="glyphicon glyphicon-time logo-small"></span>
+                <h2>@Html.DisplayFor(model => model.startTime)</h2>
+            </div>
+        </div>
+    </div>
+}
+<hr />
+<div id="about" class="container-fluid bg-grey">
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>So what are you waiting for?</h2>
+            <p>Mind youself that in order to get into the party you'll have to be at the minimum age of @Html.DisplayFor(model => model.minimalAge). Following the venue instructions is mandatory at all time. We're not to be hold responsible to any damage inflicted upon the costumer at the time of the event. </p>
+        </div>
+        <div class="col align-self-end">
+            <a class="btn btn-success btn-lg buytickets" asp-action="Payment" asp-route-id="@Model.Id">Buy Tickets!</a>
+        </div>
+    </div>
+</div>

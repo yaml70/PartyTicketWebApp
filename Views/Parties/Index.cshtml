@@ -1,5 +1,221 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model List<partywebapp.Models.Party>
+
 @{
+    ViewData["Title"] = "Index";
+    Layout = "_HomeLayout";
 }
+
+<head>
+    <link rel="stylesheet" href="~/css/HomePage.css" />
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <div id="portfolio" class="jumbotron text-center" data-target=".navbar">
+        <h1> Welcome</h1>
+        <h3>Time To Celabrate</h3>
+    </div>
+    <div id="portfolio" class="text-center">
+        <h1>Top 5 Best Seller</h1>
+        <div class="carusel-body">
+            <input type="radio" name="position" checked />
+            <input type="radio" name="position" />
+            <input type="radio" name="position" />
+            <input type="radio" name="position" />
+            <input type="radio" name="position" />
+            <main id="carousel">
+                @{
+                    foreach (var item in Model.ToList().OrderByDescending(item => item.ticketsPurchased).Take(5))
+                    {
+
+                        <div class="item">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="@Html.DisplayFor( modelItem => item.partyImage.imageUrl)" height="240" width="320" />
+                                    <div class="card-title text-black-50">
+                                        <h3>
+                                            @Html.DisplayFor(modelItem => item.name)
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3>
+                                        @Html.DisplayFor(modelItem => item.eventDate.Day)/@Html.DisplayFor(modelItem => item.eventDate.Month)/@Html.DisplayFor(modelItem => item.eventDate.Year)
+                                    </h3>
+                                    <h5>
+                                        @Html.DisplayFor(modelItem => item.genre.Type)
+                                    </h5>
+                                    <h5>
+                                        @Html.DisplayFor(modelItem => item.area.Type)
+                                    </h5>
+                                    <h5>
+                                        @Html.DisplayFor(modelItem => item.price) ILS
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </main>
+        </div>
+    </div>
+    <div id="portfolio" class="container-fluid text-center">
+        <h1>Hasharon Area</h1>
+        @{
+            var count = 0;
+            @foreach (var item in Model)
+            {
+                if (item.area.Type == AreaType.Hasharon && count < 3)
+                {
+                    count++;
+                    <div class="container-fluid col-sm-4">
+                        <div class="a-box">
+                            <div class="img-container">
+                                <div class="img-inner">
+                                    <div class="inner-skew">
+                                        <img src="@Html.DisplayFor( modelItem => item.partyImage.imageUrl)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-container color1">
+                                <h3>
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </h3>
+                                <h5>
+                                    @Html.DisplayFor(modelItem => item.eventDate.Day)/@Html.DisplayFor(modelItem => item.eventDate.Month)/@Html.DisplayFor(modelItem => item.eventDate.Year)
+                                </h5>
+                                <h5>
+                                    @Html.DisplayFor(modelItem => item.genre.Type)
+                                </h5>
+                                <a asp-action="Details" asp-route-id="@item.Id">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            @if (count == 0)
+            {
+                <img src="https://image.shutterstock.com/image-vector/not-available-watermark-stamp-text-260nw-522778633.jpg" />
+            }
+        }
+    </div>
+    <div id="portfolio" class="container-fluid text-center">
+        <h1>Center Area</h1>
+        @{
+            count = 0;
+            @foreach (var item in Model)
+            {
+                if (item.area.Type == AreaType.Center && count < 3)
+                {
+                    count++;
+                    <div class="container-fluid col-sm-4">
+                        <div class="a-box">
+                            <div class="img-container">
+                                <div class="img-inner">
+                                    <div class="inner-skew">
+                                        <img src="@Html.DisplayFor( modelItem => item.partyImage.imageUrl)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-container color2">
+                                <h3>
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </h3>
+                                <h5>
+                                    @Html.DisplayFor(modelItem => item.eventDate.Day)/@Html.DisplayFor(modelItem => item.eventDate.Month)/@Html.DisplayFor(modelItem => item.eventDate.Year)
+                                </h5>
+                                <h5>
+                                    @Html.DisplayFor(modelItem => item.genre.Type)
+                                </h5>
+                                <a asp-action="Details" asp-route-id="@item.Id">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            @if (count == 0)
+            {
+                <img src="https://image.shutterstock.com/image-vector/not-available-watermark-stamp-text-260nw-522778633.jpg" />
+            }
+        }
+    </div>
+    <div id="portfolio" class="container-fluid text-center">
+        <h1>North Area</h1>
+        @{
+            count = 0;
+            @foreach (var item in Model)
+            {
+                if (item.area.Type == AreaType.North && count < 3)
+                {
+                    count++;
+                    <div class="container-fluid col-sm-4">
+                        <div class="a-box">
+                            <div class="img-container">
+                                <div class="img-inner">
+                                    <div class="inner-skew">
+                                        <img src="@Html.DisplayFor( modelItem => item.partyImage.imageUrl)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-container color3">
+                                <h3>
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </h3>
+                                <h5>
+                                    @Html.DisplayFor(modelItem => item.eventDate.Day)/@Html.DisplayFor(modelItem => item.eventDate.Month)/@Html.DisplayFor(modelItem => item.eventDate.Year)
+                                </h5>
+                                <h5>
+                                    @Html.DisplayFor(modelItem => item.genre.Type)
+                                </h5>
+                                <a asp-action="Details" asp-route-id="@item.Id">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            @if (count == 0)
+            {
+                <img src="https://image.shutterstock.com/image-vector/not-available-watermark-stamp-text-260nw-522778633.jpg" />
+            }
+        }
+    </div>
+    <div id="portfolio" class="container-fluid text-center">
+        <h1>South Area</h1>
+        @{
+            count = 0;
+            @foreach (var item in Model)
+            {
+                if (item.area.Type == AreaType.South && count < 3)
+                {
+                    count++;
+                    <div class="container-fluid col-sm-4">
+                        <div class="a-box">
+                            <div class="img-container">
+                                <div class="img-inner">
+                                    <div class="inner-skew">
+                                        <img src="@Html.DisplayFor( modelItem => item.partyImage.imageUrl)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-container color4">
+                                <h3>
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </h3>
+                                <h5>
+                                    @Html.DisplayFor(modelItem => item.eventDate.Day)/@Html.DisplayFor(modelItem => item.eventDate.Month)/@Html.DisplayFor(modelItem => item.eventDate.Year)
+                                </h5>
+                                <h5>
+                                    @Html.DisplayFor(modelItem => item.genre.Type)
+                                </h5>
+                                <a asp-action="Details" asp-route-id="@item.Id">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            @if (count == 0)
+            {
+                <img src="https://image.shutterstock.com/image-vector/not-available-watermark-stamp-text-260nw-522778633.jpg" />
+            }
+        }
+    </div>
+</body>
