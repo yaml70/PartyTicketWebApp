@@ -1,5 +1,45 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@using partywebapp.Models
+
 @{
+    ViewData["Title"] = "Index";
+    Layout = "_HomeLayout";
 }
+
+
+<head>
+    <style>
+        .bar {
+            fill: steelblue;
+        }
+
+        .highlight {
+            fill: orange;
+        }
+
+        .graph {
+            min-width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            border-radius: 5px;
+        }
+          /* // background-color: white;*/
+    </style>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</head>
+<body id="myPage" data-target=".navbar" data-offset="60">
+
+    <div id="portfolio" class="jumbotron text-center" data-target=".navbar">
+
+        <h1>Management Screen</h1>
+        Parties per ganres
+        <div class="graph" id="GenreStatsContainer"></div>
+        Parties per clubs
+
+        <div class="graph" id="ClubStatsContainer"></div>
+        Parties per Areas
+
+        <div class="graph" id="AreaStatsContainer"></div>
+    </div>
+</body>
+
