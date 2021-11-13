@@ -1,5 +1,106 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - partywebapp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/HomePage.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
+                {
+                    <a class="navbar-brand" asp-area="" asp-controller="Parties" asp-action="Index">HOME</a>
+                }
+                else
+                {
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HOME</a>
+                }
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Context.User.Claims == null || Context.User.Claims.Count() == 0)
+                    {
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    }
+                    @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
+                    {
+                        if (ViewBag.UserType == "Manager")
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" style="background-color: black;" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">By Area</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: black;">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Users" asp-action="areaCenterId">Center</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Users" asp-action="areaNorthId">North</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Users" asp-action="areaSouthId">South</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Users" asp-action="areaHasharonId">Hasharon</a>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="nav navbar-nav navbar-right" asp-area="" asp-controller="Users" asp-action="Index">All Users</a>
+                            </li>
+                            <li>
+
+                                <a class="nav navbar-nav navbar-right" asp-area="" asp-controller="Manage" asp-action="Index">Statistics</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a class="nav navbar-nav navbar-right" asp-area="" asp-controller="Parties" asp-action="MyParties">My Events</a>
+                            </li>
+
+                        }
+                        <li>
+                            <a class="nav navbar-nav navbar-right" asp-area="" asp-controller="Parties" asp-action="HomePage">All Events</a>
+                        </li>
+                        <li>
+                            <a class="nav navbar-nav navbar-right" asp-area="" asp-controller="Users" asp-action="Logout">Logout</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a class="nav navbar-nav navbar-right" asp-area="" asp-controller="Users" asp-action="Login">Login</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
+            {
+                <div class="col-2 text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z" />
+                    </svg>
+                    <aa>@ViewBag.UserFullName - @ViewBag.UserType</aa>
+                </div>
+            }
+        </div>
+    </nav>
+    <div>
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="~/lib/D3/dist/d3.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
